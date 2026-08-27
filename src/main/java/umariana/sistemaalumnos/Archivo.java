@@ -16,7 +16,6 @@ public class Archivo {
                 escritor.write(miAlumno.alineaTexto());
                 escritor.newLine();
             }
-            System.out.println("alumno registrado con exito");
         } catch (IOException e) {
             System.out.println("Error al escribir el archivo: " + e.getMessage());
         }

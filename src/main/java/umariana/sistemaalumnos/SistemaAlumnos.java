@@ -19,7 +19,7 @@ public class SistemaAlumnos {
                                2.\tListar todos los alumnos
                                3.\tModificar alumnos 
                                4.\tEliminar un alumno 
-                               5.\tGenerar un reporte de alumnos registrados (Reporte en pantalla de impresion)
+                               5.\tGenerar un reporte de alumnos registrados
                                6.\tSalir del programa
                                ============================""");
             opcion = Integer.parseInt(lector.nextLine());
