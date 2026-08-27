@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class GestionarAlumnos {
 
     Scanner lector = new Scanner(System.in);
-    ArrayList<Alumnos> alumnos = new ArrayList<>();
+    ArrayList<Alumnos> misAlumnos = new ArrayList<>();
     Archivo reporte = new Archivo();
 
     public GestionarAlumnos() throws FileNotFoundException{
-        reporte.LeerArchivo(alumnos);
-        System.out.println("Se cargaron " + alumnos.size() + " alumnos desde el archivo.");
+        reporte.LeerArchivo(misAlumnos);
+        System.out.println("Se cargaron " + misAlumnos.size() + " alumnos desde el archivo.");
     }
 
     public void agregarAlumno() throws FileNotFoundException {
@@ -39,26 +39,26 @@ public class GestionarAlumnos {
             return;
         }
         System.out.println("============================");
-        alumnos.add(new Alumnos(cedula, nombre, apellido, edad, semestre));
-        reporte.EscribirTodos(alumnos);
+        misAlumnos.add(new Alumnos(cedula, nombre, apellido, edad, semestre));
+        reporte.EscribirTodos(misAlumnos);
 
     }
 
     public void listarAlumnos() {
-        if (alumnos.isEmpty()) {
+        if (misAlumnos.isEmpty()) {
             System.out.println("No hay alumnos registrados.");
             return;
         }
         System.out.println("====== Listado de alumnos ======\n");
-        for (Alumnos alumno : alumnos) {
-            System.out.printf("Alumno: %s %s. \n", alumno.getNombre(), alumno.getApellido());
-            System.out.printf("1.Cedula: %d \n2.Edad: %d años.\n3.Semestre: %d \n", alumno.getCedula(), alumno.getEdad(), alumno.getSemestre());
+        for (Alumnos miAlumno : misAlumnos) {
+            System.out.printf("Alumno: %s %s. \n", miAlumno.getNombre(), miAlumno.getApellido());
+            System.out.printf("1.Cedula: %d \n2.Edad: %d años.\n3.Semestre: %d \n", miAlumno.getCedula(), miAlumno.getEdad(), miAlumno.getSemestre());
             System.out.println("============================");
         }
     }
 
     public void ModificarAlumno() throws FileNotFoundException {
-        if (alumnos.isEmpty()) {
+        if (misAlumnos.isEmpty()) {
             System.out.println("No hay alumnos registrados.");
             return;
         }
@@ -66,19 +66,19 @@ public class GestionarAlumnos {
         System.out.println("digitar cedula del estudiante: ");
         int cedula = Integer.parseInt(lector.nextLine());
 
-        for (Alumnos alumno : alumnos) {
-            if (alumno.getCedula() == cedula) {
+        for (Alumnos miAlumno : misAlumnos) {
+            if (miAlumno.getCedula() == cedula) {
 
                 System.out.println("digite el nombre del alumno:");
-                alumno.setNombre(lector.nextLine());
+                miAlumno.setNombre(lector.nextLine());
                 System.out.println("digite el apellido del alumno:");
-                alumno.setApellido(lector.nextLine());
+                miAlumno.setApellido(lector.nextLine());
 
                 try {
                     System.out.println("digite la edad del alumno:");
-                    alumno.setEdad(Integer.parseInt(lector.nextLine()));
+                    miAlumno.setEdad(Integer.parseInt(lector.nextLine()));
                     System.out.println("digite el semestre del alumno:");
-                    alumno.setSemestre(Integer.parseInt(lector.nextLine()));
+                    miAlumno.setSemestre(Integer.parseInt(lector.nextLine()));
                 } catch (NumberFormatException e) {
                     System.out.println("Error: debe ingresar un numero valido.");
                     return;
@@ -86,11 +86,11 @@ public class GestionarAlumnos {
             }
 
         }
-        reporte.EscribirTodos(alumnos);
+        reporte.EscribirTodos(misAlumnos);
     }
 
     public void EliminarAlumno() throws FileNotFoundException {
-        if (alumnos.isEmpty()) {
+        if (misAlumnos.isEmpty()) {
             System.out.println("No hay alumnos registrados.");
             return;
         }
@@ -98,15 +98,15 @@ public class GestionarAlumnos {
         System.out.println("digitar cedula del estudiante: ");
         int cedula = Integer.parseInt(lector.nextLine());
 
-        for (Alumnos alumno : alumnos) {
-            if (alumno.getCedula() == cedula) {
-                System.out.printf("==== Estudiante: %s ====", alumno.getNombre());
-                System.out.printf("1.Cedula: %d \n2.Edad: %d años.\n3.Semestre: %d \n", alumno.getCedula(), alumno.getEdad(), alumno.getSemestre());
+        for (Alumnos miAlumno : misAlumnos) {
+            if (miAlumno.getCedula() == cedula) {
+                System.out.printf("==== Estudiante: %s ====", miAlumno.getNombre());
+                System.out.printf("1.Cedula: %d \n2.Edad: %d años.\n3.Semestre: %d \n", miAlumno.getCedula(), miAlumno.getEdad(), miAlumno.getSemestre());
                 System.out.println("============================");
                 System.out.println("confirmacion de eliminacion: ");
                 String opc = lector.nextLine();
                 if (opc.toLowerCase().equals("si")) {
-                    alumnos.remove(alumno);
+                    misAlumnos.remove(miAlumno);
                     System.out.println("====== Alumno eliminado. ======");
                     return;
                 } else {
@@ -114,6 +114,6 @@ public class GestionarAlumnos {
                 }
             }
         }
-        reporte.EscribirTodos(alumnos);
+        reporte.EscribirTodos(misAlumnos);
     }
 }
