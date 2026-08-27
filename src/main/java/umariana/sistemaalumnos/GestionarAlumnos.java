@@ -1,5 +1,6 @@
 package umariana.sistemaalumnos;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -13,12 +14,12 @@ public class GestionarAlumnos {
     ArrayList<Alumnos> alumnos = new ArrayList<>();
     Archivo reporte = new Archivo();
 
-    public GestionarAlumnos() {
+    public GestionarAlumnos() throws FileNotFoundException{
         reporte.LeerArchivo(alumnos);
         System.out.println("Se cargaron " + alumnos.size() + " alumnos desde el archivo.");
     }
 
-    public void agregarAlumno() {
+    public void agregarAlumno() throws FileNotFoundException {
         System.out.println("====== Agregar Alumno ======\n");
         int cedula, semestre, edad;
         System.out.println("digite el nombre del alumno:");
@@ -56,27 +57,27 @@ public class GestionarAlumnos {
         }
     }
 
-    public void ModificarAlumno() {
+    public void ModificarAlumno() throws FileNotFoundException {
         if (alumnos.isEmpty()) {
             System.out.println("No hay alumnos registrados.");
             return;
         }
-        System.out.println("====== Listado de alumnos ======");
+        System.out.println("====== Alumnos a modificar ======");
         System.out.println("digitar cedula del estudiante: ");
         int cedula = Integer.parseInt(lector.nextLine());
 
         for (Alumnos alumno : alumnos) {
             if (alumno.getCedula() == cedula) {
 
-                System.out.println("digite la nombre del nombre:");
+                System.out.println("digite el nombre del alumno:");
                 alumno.setNombre(lector.nextLine());
-                System.out.println("digite la apellido del apellido:");
+                System.out.println("digite el apellido del alumno:");
                 alumno.setApellido(lector.nextLine());
 
                 try {
-                    System.out.println("digite la edad del edad:");
+                    System.out.println("digite la edad del alumno:");
                     alumno.setEdad(Integer.parseInt(lector.nextLine()));
-                    System.out.println("digite la semestre del semestre:");
+                    System.out.println("digite el semestre del alumno:");
                     alumno.setSemestre(Integer.parseInt(lector.nextLine()));
                 } catch (NumberFormatException e) {
                     System.out.println("Error: debe ingresar un numero valido.");
@@ -88,7 +89,7 @@ public class GestionarAlumnos {
         reporte.EscribirTodos(alumnos);
     }
 
-    public void EliminarAlumno() {
+    public void EliminarAlumno() throws FileNotFoundException {
         if (alumnos.isEmpty()) {
             System.out.println("No hay alumnos registrados.");
             return;
