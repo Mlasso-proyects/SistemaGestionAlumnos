@@ -50,7 +50,7 @@ public class Alumnos {
     }
 
     public void setEdad(int edad) {
-        if(edad < 0){
+        if(edad < 0 && edad > 100){
             throw new IllegalArgumentException("No se permiten numeros negativos");
         }
         this.edad = edad;
@@ -61,7 +61,7 @@ public class Alumnos {
     }
 
     public void setSemestre(int semestre) {
-        if(semestre < 0){
+        if(semestre < 0 && semestre >10){
             throw new IllegalArgumentException("No se permiten numeros negativos");
         }
         this.semestre = semestre;
