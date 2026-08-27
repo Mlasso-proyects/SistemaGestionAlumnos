@@ -1,4 +1,5 @@
 package umariana.sistemaalumnos;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -7,19 +8,20 @@ import java.util.Scanner;
  */
 public class SistemaAlumnos {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner lector = new Scanner(System.in);
         GestionarAlumnos gestionar = new GestionarAlumnos();
         int opcion = 0;
         do {
-            System.out.println("====== Menú de opciones ======\n"
-                    + "1.	Agregar un alumno\n"
-                    + "2.	Listar todos los alumnos\n"
-                    + "3.	Modificar alumnos \n"
-                    + "4.	Eliminar un alumno \n"
-                    + "5.	Generar un reporte de alumnos registrados (Reporte en pantalla de impresión)\n"
-                    + "6.	Salir del programa\n"
-                    + "============================");
+            System.out.println("""
+                               ====== Menu de opciones ======
+                               1.\tAgregar un alumno
+                               2.\tListar todos los alumnos
+                               3.\tModificar alumnos 
+                               4.\tEliminar un alumno 
+                               5.\tGenerar un reporte de alumnos registrados (Reporte en pantalla de impresion)
+                               6.\tSalir del programa
+                               ============================""");
             opcion = Integer.parseInt(lector.nextLine());
 
             switch (opcion) {
