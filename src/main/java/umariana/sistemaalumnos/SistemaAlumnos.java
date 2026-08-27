@@ -10,7 +10,7 @@ public class SistemaAlumnos {
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner lector = new Scanner(System.in);
-        GestionarAlumnos gestionar = new GestionarAlumnos();
+        GestionarAlumnos gestionar = new GestionarAlumnos(lector);
         int opcion = 0;
         do {
             System.out.println("""
@@ -34,13 +34,13 @@ public class SistemaAlumnos {
                 case 4 ->
                     gestionar.EliminarAlumno();
                 case 5 ->
-                    System.out.println("5");
+                    gestionar.generarReporte();
                 case 6 -> 
                     System.out.println("Saliendo del programa...");
             }
 
         } while (opcion != 6);
-
+        lector.close();
     }
 
 }
