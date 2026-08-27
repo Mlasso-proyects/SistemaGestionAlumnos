@@ -7,11 +7,11 @@ import java.util.ArrayList;
  *
  * @author Mflass
  */
-public class File {
+public class Archivo {
     // ruta del archivo: ./java/data/ReporteAlumno.txt
 
     public void EscribirTodos(ArrayList<Alumnos> alumnos) {
-        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("./java/data/ReporteAlumno.txt", false))) {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(".\\src\\main\\java\\data\\ReporteAlumno.txt", false))) {
             for (Alumnos miAlumno : alumnos) {
                 escritor.write(miAlumno.alineaTexto());
                 escritor.newLine();
@@ -22,7 +22,7 @@ public class File {
     }
 
     public void LeerArchivo(ArrayList<Alumnos> alumnos) {
-        try (BufferedReader lector = new BufferedReader(new FileReader("./java/data/ReporteAlumno.txt"))) {
+        try (BufferedReader lector = new BufferedReader(new FileReader(".\\src\\main\\java\\data\\ReporteAlumno.txt"))) {
             String linea;
             while ((linea = lector.readLine()) != null) {
                 if(linea.isBlank()) continue;

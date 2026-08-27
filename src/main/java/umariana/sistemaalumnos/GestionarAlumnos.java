@@ -11,7 +11,7 @@ public class GestionarAlumnos {
 
     Scanner lector = new Scanner(System.in);
     ArrayList<Alumnos> alumnos = new ArrayList<>();
-    File reporte = new File();
+    Archivo reporte = new Archivo();
 
     public GestionarAlumnos() {
         reporte.LeerArchivo(alumnos);
