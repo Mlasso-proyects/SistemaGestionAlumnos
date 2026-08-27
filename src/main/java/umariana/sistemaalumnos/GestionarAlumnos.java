@@ -64,7 +64,15 @@ public class GestionarAlumnos {
         }
         System.out.println("====== Alumnos a modificar ======");
         System.out.println("digitar cedula del estudiante: ");
-        int cedula = Integer.parseInt(lector.nextLine());
+        int cedula;
+        
+        try{
+            cedula = Integer.parseInt(lector.nextLine());
+        }catch(NumberFormatException e){
+            System.out.println("Error: ingresar un numero valido");
+            return;
+        }
+         
 
         for (Alumnos miAlumno : misAlumnos) {
             if (miAlumno.getCedula() == cedula) {
