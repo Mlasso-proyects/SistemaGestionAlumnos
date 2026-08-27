@@ -10,11 +10,12 @@ import java.util.ArrayList;
  */
 public class GestionarAlumnos {
 
-    Scanner lector = new Scanner(System.in);
+    Scanner lector ;
     ArrayList<Alumnos> misAlumnos = new ArrayList<>();
     Archivo reporte = new Archivo();
 
-    public GestionarAlumnos() throws FileNotFoundException{
+    public GestionarAlumnos(Scanner lector) throws FileNotFoundException {
+        this.lector = lector;
         reporte.LeerArchivo(misAlumnos);
         System.out.println("Se cargaron " + misAlumnos.size() + " alumnos desde el archivo.");
     }
@@ -65,14 +66,13 @@ public class GestionarAlumnos {
         System.out.println("====== Alumnos a modificar ======");
         System.out.println("digitar cedula del estudiante: ");
         int cedula;
-        
-        try{
+
+        try {
             cedula = Integer.parseInt(lector.nextLine());
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Error: ingresar un numero valido");
             return;
         }
-         
 
         for (Alumnos miAlumno : misAlumnos) {
             if (miAlumno.getCedula() == cedula) {
@@ -123,5 +123,24 @@ public class GestionarAlumnos {
             }
         }
         reporte.EscribirTodos(misAlumnos);
+    }
+
+    public void generarReporte() {
+        System.out.println("\n====== Reporte de Alumnos Registrados ======");
+        if (misAlumnos.isEmpty()) {
+            System.out.println("No hay alumnos registrados.");
+        } else {
+            System.out.printf("%-12s %-15s %-15s %-6s %-9s%n",
+                    "Cedula", "Nombre", "Apellido", "Edad", "Semestre");
+            System.out.println("-----------------------------------------------------------");
+            for (Alumnos miAlumno : misAlumnos) {
+                System.out.printf("%-12d %-15s %-15s %-6d %-9d%n",
+                        miAlumno.getCedula(), miAlumno.getNombre(), miAlumno.getApellido(),
+                        miAlumno.getEdad(), miAlumno.getSemestre());
+            }
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Total de alumnos registrados: " + misAlumnos.size());
+        }
+        System.out.println("=============================================\n");
     }
 }
